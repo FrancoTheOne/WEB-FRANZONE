@@ -1,5 +1,22 @@
-@import "_base", "_functions", "_layout", "_mixins", "_typography", "_utils",
-  "_variables";
+@use "@angular/material" as mat;
+@use "theme/all" as themes;
+@use "typography/config";
+@use "base";
+@use "functions";
+@use "layout";
+@use "mixins";
+@use "typography";
+@use "utils";
+@use "var" as *;
+
+@include mat.core();
+
+// include only used components' themes reduce css file size
+@include mat.all-component-themes(themes.$app-light-theme);
+// @include mat.core-theme(themes.$app-light-theme);
+// @include mat.button-theme(themes.$app-light-theme);
+
+@include mat.typography-hierarchy(config.$app-typography);
 
 html,
 body {
@@ -7,12 +24,5 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-
-  franzone-app {
-    router-outlet + * {
-      margin-top: $headerHeight;
-      overflow-y: auto;
-    }
-  }
+  font-family: Inter, Poppins, "Helvetica Neue", sans-serif;
 }
